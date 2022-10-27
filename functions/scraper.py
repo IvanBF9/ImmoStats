@@ -20,7 +20,8 @@ base.create_table('nfts',
 
     #add_row
 
-def scrap_open_sea():
+def scrap_open_sea(max):
+    max += 1
     # Get driver
     DRIVER_PATH = './chromedriver'
     driver = webdriver.Chrome(DRIVER_PATH)
@@ -33,21 +34,21 @@ def scrap_open_sea():
     containers = []
     content = []
 
-    for z in range(1,3):
+    for z in range(1,max):
         containers.append(driver.find_elements(By.TAG_NAME, 'article'))
         
         if z != 1:
             temp = driver.find_elements(By.TAG_NAME, 'article')
-            containers[1] = [i for i in temp if i not in containers[0]]
+            containers[z-1] = [i for i in temp if i not in containers[0]]
             
-        while len(containers[z-1]) < 200:
+        while len(containers[z-1]) < 150:
             
             driver.execute_script(f'window.scrollTo(0,{len_px})')
             len_px+=40
             
             if z != 1:
                 temp = driver.find_elements(By.TAG_NAME, 'article')
-                containers[1] = [i for i in temp if i not in containers[0]]
+                containers[z-1] = [i for i in temp if i not in containers[0]]
             else:
                 containers[z-1] = driver.find_elements(By.TAG_NAME, 'article')
 
@@ -56,7 +57,9 @@ def scrap_open_sea():
         
         if z != 1:
             temp = driver.find_elements(By.TAG_NAME, 'article')
-            containers[1] = [i for i in temp if i not in containers[0]]
+            containers[z-1] = [i for i in temp if i not in containers[0]]
+            for item in containers[z-1]:
+                containers[0].append(item)
         else:
             containers[z-1] = driver.find_elements(By.TAG_NAME, 'article')
 
@@ -67,7 +70,7 @@ def scrap_open_sea():
                 'author' : containers[z-1][i].find_element(By.CSS_SELECTOR, 'a > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > span:nth-child(1) > div:nth-child(1) > div:nth-child(1)').text,
                 'eth_price' : containers[z-1][i].find_element(By.CSS_SELECTOR, 'a > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2)').text
             }
-            for i in range(150)
+            for i in range(100)
         ])
 
     # Concat lists
