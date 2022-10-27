@@ -65,10 +65,10 @@ def scrap_open_sea(max):
 
         content.append([
             {
-                'img' : containers[z-1][i].find_element(By.TAG_NAME, 'img').get_attribute('src'),
-                'title' : containers[z-1][i].find_element(By.CSS_SELECTOR, 'a > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)').text,
-                'author' : containers[z-1][i].find_element(By.CSS_SELECTOR, 'a > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > span:nth-child(1) > div:nth-child(1) > div:nth-child(1)').text,
-                'eth_price' : containers[z-1][i].find_element(By.CSS_SELECTOR, 'a > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2)').text
+                'img' : containers[z-1][i].find_element(By.TAG_NAME, 'img').get_attribute('src') if containers[z-1][i].find_element(By.TAG_NAME, 'img') else None,
+                'title' : containers[z-1][i].find_element(By.CSS_SELECTOR, 'a > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)').text if containers[z-1][i].find_element(By.CSS_SELECTOR, 'a > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)') else None,
+                'author' : containers[z-1][i].find_element(By.CSS_SELECTOR, 'a > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > span:nth-child(1) > div:nth-child(1) > div:nth-child(1)').text if containers[z-1][i].find_element(By.CSS_SELECTOR, 'a > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > span:nth-child(1) > div:nth-child(1) > div:nth-child(1)') else None,
+                'eth_price' : containers[z-1][i].find_element(By.CSS_SELECTOR, 'a > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2)').text if containers[z-1][i].find_element(By.CSS_SELECTOR, 'a > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2)') else None
             }
             for i in range(100)
         ])

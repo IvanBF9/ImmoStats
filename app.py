@@ -11,5 +11,5 @@ if len(sys.argv) > 1:
     except:
         pass
 
-print(scrap_x)
+print(f'Scraping {scrap_x*100} Nfts')
 scrap_open_sea(scrap_x)
