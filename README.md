@@ -1,5 +1,5 @@
 # Opensea scraping
-the process can be very long, for 200 nfts it can take more than 5 minutes depending on your connection
+the process can be very long, for 200 nfts it can take more than 5 minutes depending on your network
 ## run project
 python3 app.py
 This will scrap 200 nfts
