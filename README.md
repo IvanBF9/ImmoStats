@@ -1,8 +1,10 @@
-# ImmoStats
+# Opensea scraping
+the process can be very long, for 200 nfts it can take more than 5 minutes depending on your connection
+## run project
+python3 app.py
+This will scrap 200 nfts
 
-
-## Get started with scrapy
-## Scrapy generate project
-scrapy startproject project_name
-## Create spider
-scrapy genspider example https://openclassrooms.com/fr/search?page=42
+## Args
+python3 app.py 4
+you can add an integer as arg.
+in this case '4 = 400'
